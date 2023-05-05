@@ -44,9 +44,11 @@
                             </a>
                         </li>
                     </ul>
-                    
+                    <a type="button" class="btn btn-primary" href="{% url 'like_post' post.id %}">
+                        Нравиться <span class="badge text-bg-secondary">{{post.likes.count}}</span>
+                    </a>
                     <hr class="mb40">
-                    <h4 class="mb40 text-uppercase font500">Comments</h4>
+                    <h4 class="mb40 text-uppercase font500">Комментарии</h4>
                     {% for comment in post.post_comments.all %}
                     <div class="media mb40">
                         <i class="d-flex mr-3 fa fa-user-circle-o fa-3x"></i>

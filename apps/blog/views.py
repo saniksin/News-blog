@@ -1,11 +1,14 @@
 from typing import Any, Dict
+from django.forms.models import BaseModelForm
 from django.shortcuts import render
-
 from django.http import HttpResponse
-from django.views.generic import ListView, DetailView
-from django.shortcuts import get_object_or_404
+from django.views.generic import ListView, DetailView, CreateView
+from django.shortcuts import get_object_or_404,redirect
 from apps.blog.models import Post, Category, Comment
-from apps.blog.forms import CommentForm
+from apps.blog.forms import CommentForm, PostCreationForm
+from django.urls import reverse_lazy
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 # Create your views here.
 
@@ -36,9 +39,7 @@ class PostDelailView(DetailView):
         context["comment_form"] = CommentForm()
         return context
 
-from django.shortcuts import redirect
-from django.urls import reverse_lazy
-
+@login_required
 def save_comment_form(request, post_id):
     if request.method == "POST":
         print(request.POST)
@@ -50,3 +51,27 @@ def save_comment_form(request, post_id):
             comment.post = post
             comment.save()
     return redirect(reverse_lazy("post_detail", kwargs={"pk":post_id}))
+
+
+@login_required
+def like_post(request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    user = request.user
+    if user not in post.likes.all():
+        post.likes.add(user)
+    else:
+        post.likes.remove(user)
+    return redirect(reverse_lazy("post_detail", kwargs={"pk":post_id}))
+
+
+class PostCreateView(LoginRequiredMixin, CreateView):
+    template_name= "post_create.html"
+    model = Post
+    success_url = reverse_lazy("all")
+    form_class = PostCreationForm
+
+    def form_valid(self, form):
+        post = form.save(commit=False)
+        post.author = self.request.user
+        post.save
+        return super().form_valid(form)
