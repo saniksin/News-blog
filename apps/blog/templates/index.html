@@ -33,8 +33,9 @@
                     </a>
                 </div>
                 <div>
-
-                    <p>{{ p.description| truncatewords:50}}</p>
+                    <p>{{ p.description| truncatewords:50|safe}}
+                      <a href="{% url 'post_detail' p.id %}" style="text-decoration: none;">Читать дальше...</a>
+                    </p>
                 <hr>
                 </div>
             </div>

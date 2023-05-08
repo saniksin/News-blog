@@ -20,6 +20,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include("apps.accounts.urls")),
     path('', include("apps.blog.urls")),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
+    path('select2/', include('django_select2.urls')),
+    path('debug/', include('debug_toolbar.urls')),
 ]
 
 from django.conf import settings

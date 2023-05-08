@@ -1,7 +1,13 @@
 {% extends 'base.html' %}
 
+{% block css %}
+    {{form.media.css}}
+{% endblock %}
 
 {% block content %}
+<style>
+    input, select {width: 100%}
+</style>
 
 <div class="container">
     <div class="row">
@@ -64,3 +70,8 @@
   </div>
 
 {% endblock %}
+
+{% block js %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+{{ form.media.js }}
+{% endblock%}
