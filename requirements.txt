@@ -1,3 +1,4 @@
 django-ckeditor
 django-select2
 django-debug-toolbar
+django-filter

@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'apps.accounts',
     'apps.blog',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
