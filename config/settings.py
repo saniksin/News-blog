@@ -41,14 +41,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'ckeditor',
     'django_select2',
     'debug_toolbar',
-    'apps.accounts',
-    'apps.blog',
     'django_filters',
     'rest_framework',
-    'apps.api'
+    'drf_yasg',
+
+    'apps.accounts',
+    'apps.blog',
+    'apps.api',
 ]
 
 MIDDLEWARE = [
@@ -228,4 +231,12 @@ CKEDITOR_CONFIGS = {
             'elementspath'
         ]),
     }
+}
+
+
+#
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    )
 }
