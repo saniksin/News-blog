@@ -21,9 +21,14 @@ schema_view = get_schema_view(
 
 
 urlpatterns = [
-    path('docs/', schema_view.with_ui('swagger')),
     path('posts/', views.PostListApiView.as_view()),
     path('category/', views.CategoryListApiView.as_view()),
+    path('post/<int:pk>/', views.PostDetailAPIView.as_view()),
+    path('post/like/<int:pk>/', views.LikePostAPIView.as_view()),
+    path('post/create/', views.PostCreateAPIView.as_view()),
+
+    path('docs/', schema_view.with_ui('swagger')),
+
     path('token/', TokenObtainPairView.as_view(), name="token_obtain_pair"),
-    path('refresh', TokenRefreshView.as_view(), name="token_refresh"),
+    path('refresh/', TokenRefreshView.as_view(), name="token_refresh"),
 ]

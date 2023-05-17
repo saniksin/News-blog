@@ -16,3 +16,13 @@ class CategorySerializer(serializers.ModelSerializer):
         fields = "__all__"
 
 
+class PostCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Post
+        fields = [
+            "title",
+            "description",
+            "category",
+            "image",
+        ]
