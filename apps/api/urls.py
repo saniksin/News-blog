@@ -26,6 +26,9 @@ urlpatterns = [
     path('post/<int:pk>/', views.PostDetailAPIView.as_view()),
     path('post/like/<int:pk>/', views.LikePostAPIView.as_view()),
     path('post/create/', views.PostCreateAPIView.as_view()),
+    path('category/create/', views.CategoryCreateAPIView.as_view()),
+    path('users/', views.UsersAPIView.as_view()),
+    path('user/<int:pk>/', views.UsersDetailAPIView.as_view()),
 
     path('docs/', schema_view.with_ui('swagger')),
 

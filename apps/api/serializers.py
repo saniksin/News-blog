@@ -1,5 +1,6 @@
 from rest_framework import serializers
 from apps.blog.models import Post, Category
+from apps.accounts.models import User
 
 
 class PostSerializer(serializers.ModelSerializer):
@@ -26,3 +27,30 @@ class PostCreateSerializer(serializers.ModelSerializer):
             "category",
             "image",
         ]
+
+
+class CategoryCreateSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Category
+        fields = [
+            "name",
+            "slug",
+        ]
+
+
+class UsersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = [
+            'id',
+            'email',
+        ]
+
+
+class UsersDetailSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = User
+        fields = "__all__"
